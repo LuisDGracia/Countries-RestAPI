@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container } from '../Cards/Card/CardStyle'
-import { Continent, Continents, Icon, Input, SearchContainer } from './FiltersStyled'
+import { Container, Continent, Continents, Icon, Input, SearchContainer } from './FiltersStyled'
 
 function Filters() {
   return (

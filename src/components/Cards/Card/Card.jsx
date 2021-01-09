@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Flag, Name, Data, Info } from './CardStyle'
+import { Container, Flag, Name, Data, Info, FlagContainer, InfoContainer } from './CardStyle'
 
 function Card({ flag, name, info }) {  
   const CountryInfo = []
@@ -18,9 +18,13 @@ function Card({ flag, name, info }) {
 
   return (
     <Container>
-      <Flag src={flag} />
-      <Name>{name}</Name>
-      {CountryInfo}
+      <FlagContainer>
+       <Flag image={flag} />
+      </FlagContainer>
+      <InfoContainer>
+        <Name>{name}</Name>
+        {CountryInfo}
+      </InfoContainer>
     </Container>
   )
 }

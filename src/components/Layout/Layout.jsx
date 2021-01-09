@@ -9,7 +9,7 @@ function Layout() {
   const [countries, setCountries] = useState([])
 
   useEffect(() => {
-    axios.get('/all')
+    axios.get('/region/americas')
       .then( info => {
         setCountries( info.data );
       })

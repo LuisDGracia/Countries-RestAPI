@@ -1,14 +1,15 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Cards from '../Cards/Cards';
+import { Container } from './ContentStyled';
 
 function Content({ countries }) {
   return (
-    <Fragment>
+    <Container>
       { countries.length === 0 ? 
         (<p>Loading...</p>) :
         <Cards countries = {countries} />
       }
-    </Fragment>
+    </Container>
   )
 }
 

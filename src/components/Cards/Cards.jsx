@@ -1,6 +1,6 @@
 import React from 'react'
 import Card from './Card/Card'
-import { Container } from './Card/CardStyle'
+import { Container } from './CardsStyled'
 
 function Cards({ countries }) {
   return (
