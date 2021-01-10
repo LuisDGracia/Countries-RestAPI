@@ -6,6 +6,8 @@ const theme = {
       Background: "hsl(0, 0%, 98%)",
       Input: "hsl(0, 0%, 52%)",
     },
+    mode: " Mode Dark",
+    icon: "moon",
     transition: "0.5s",
   },
   darkTheme: {
@@ -14,6 +16,8 @@ const theme = {
       Elements: "hsl(209, 23%, 22%)",
       Background: "hsl(207, 26%, 17%)",
     },
+    icon: "sun",
+    mode: "Light Mode",
     transition: "0.5s",
   },
 };

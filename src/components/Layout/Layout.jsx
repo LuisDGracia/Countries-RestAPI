@@ -7,11 +7,13 @@ import Header from '../Header/Header'
 function Layout() {
 
   const [countries, setCountries] = useState([])
+  const [filter, setFilter] = useState([])
 
   useEffect(() => {
-    axios.get('/region/americas')
+    axios.get('/all')
       .then( info => {
         setCountries( info.data );
+        setFilter( info.data );
       })
       .catch( error => error)
   }, [])
@@ -19,8 +21,10 @@ function Layout() {
   return (
     <Fragment>
       <Header />
-      <Filters />
-      <Content countries={countries} />
+      <Filters 
+        data={{ 'original': countries, 'filter': filter }} 
+        setData={{ 'countries': setCountries, 'filter': setFilter }} />
+      <Content countries={filter} />
     </Fragment>
   )
 }

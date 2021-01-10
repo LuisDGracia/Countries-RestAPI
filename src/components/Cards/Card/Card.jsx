@@ -17,9 +17,9 @@ function Card({ flag, name, info }) {
   }
 
   return (
-    <Container>
+    <Container loading="lazy">
       <FlagContainer>
-       <Flag image={flag} />
+       <Flag src={flag} loading="lazy" />
       </FlagContainer>
       <InfoContainer>
         <Name>{name}</Name>
