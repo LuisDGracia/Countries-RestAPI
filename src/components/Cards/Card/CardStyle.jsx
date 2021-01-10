@@ -2,11 +2,16 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   width: 21%;
+  height: 300px;
   max-height: 300px;
   margin-bottom: 40px;
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.3);
   border-radius: 5px;
   background-color: ${ ({ theme }) => theme.colors.Elements };
+
+  &:hover{
+    cursor: pointer;
+  }
 `
 
 const Flag = styled.img`

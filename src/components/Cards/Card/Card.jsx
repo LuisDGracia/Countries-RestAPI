@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Flag, Name, Data, Info, FlagContainer, InfoContainer } from './CardStyle'
 
-function Card({ flag, name, info }) {  
+function Card({ flag, name, info, clicked }) {  
   const CountryInfo = []
     
   for( let [key, value] of Object.entries(info) ){
@@ -17,7 +17,7 @@ function Card({ flag, name, info }) {
   }
 
   return (
-    <Container loading="lazy">
+    <Container loading="lazy" onClick={ clicked } >
       <FlagContainer>
        <Flag src={flag} loading="lazy" />
       </FlagContainer>

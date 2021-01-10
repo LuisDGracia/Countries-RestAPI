@@ -3,6 +3,11 @@ import Card from './Card/Card'
 import { Container } from './CardsStyled'
 
 function Cards({ countries }) {
+
+  const LoadCountryInfo = ( name ) => {
+    console.log( window.location.pathname = `/${name}` )
+  }
+
   return (
     <Container>
       {countries.map( country => {
@@ -15,7 +20,8 @@ function Cards({ countries }) {
               'region': country.region, 
               'capital': country.capital 
             }}
-            key={ country.name } />
+            key={ country.name } 
+            clicked={ () => LoadCountryInfo( country.name )  } />
         )
       })}
     </Container>

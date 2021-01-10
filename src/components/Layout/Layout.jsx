@@ -3,6 +3,8 @@ import axios from '../../axios-orders'
 import Content from '../Content/Content'
 import Filters from '../FIlters/Filters'
 import Header from '../Header/Header'
+import { Route } from 'react-router-dom'
+import CountryInfo from '../County_Info/CountryInfo'
 
 function Layout() {
 
@@ -20,11 +22,17 @@ function Layout() {
 
   return (
     <Fragment>
-      <Header />
-      <Filters 
-        data={{ 'original': countries, 'filter': filter }} 
-        setData={{ 'countries': setCountries, 'filter': setFilter }} />
-      <Content countries={filter} />
+      <Route path="/" exact >
+        <Header />
+        <Filters 
+          data={{ 'original': countries, 'filter': filter }} 
+          setData={{ 'countries': setCountries, 'filter': setFilter }} />
+        <Content countries={filter} />
+      </Route>
+      <Route path="/:country">
+        <Header />
+        <CountryInfo />
+      </Route>
     </Fragment>
   )
 }
