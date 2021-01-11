@@ -1,29 +1,39 @@
 import styled from 'styled-components'
+import { device } from '../../styles/mediaQueries'
 
 const Container = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: calc(100vh - 70px);
   padding: 40px;
   background-color: ${ ({ theme }) => theme.colors.Background };
   display: flex;
   flex-flow: column wrap;
-  align-items: space-arround;
 `
 const InfoContainer = styled.div`
   width: 100%;
+  height: auto;
   margin-top: 20px;
   display: flex;
   flex-flow: row wrap;
+  
+  @media${device.tablet}{
+    margin-top: 40px;
+    flex-flow: column wrap;
+  }
 `
 
 const FlagContainer = styled.div`
   width: 50%;
   height: 100%;
+
+  @media${device.tablet}{
+    width: 100%;
+  }
 `
 
 const Flag = styled.img`
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 `
 
 const BorderText = styled.p`
@@ -67,6 +77,17 @@ const DataContainer = styled.div`
 
   p{
     font-size: 14px;
+  }
+
+  @media${device.tablet}{
+    width: 100%;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+
+    p{
+      font-size: 18px;
+    }
   }
 `
 

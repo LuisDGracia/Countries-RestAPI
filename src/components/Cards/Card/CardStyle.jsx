@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { device } from '../../../styles/mediaQueries';
 
 const Container = styled.div`
   width: 21%;
@@ -11,6 +12,14 @@ const Container = styled.div`
 
   &:hover{
     cursor: pointer;
+  }
+
+  @media${device.tablet}{
+    width: 45%;
+  }
+  
+  @media${device.mobileL}{
+    width: 100%;
   }
 `
 

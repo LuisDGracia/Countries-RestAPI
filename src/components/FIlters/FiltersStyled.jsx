@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { device } from '../../styles/mediaQueries'
 
 const Container = styled.div`
   padding: 40px;
@@ -6,6 +7,8 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+
 `
 
 const SearchContainer = styled.div`
@@ -15,10 +18,16 @@ const SearchContainer = styled.div`
   background-color: ${ ({ theme }) => theme.colors.Elements };
   color: ${ ({ theme }) => theme.colors.Text };
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.2);
+
+  @media${device.tablet}{
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
 `
 
 const Input = styled.input.attrs( () => ({ type: 'text', placeholder: 'Search for a country...' }))`
-  width: 95%;
+  width: 90%;
   background: none;
   border: none;
   margin: 5px 0px;
@@ -32,6 +41,11 @@ const Input = styled.input.attrs( () => ({ type: 'text', placeholder: 'Search fo
   &::placeholder{
     color: ${ ({ theme }) => theme.colors.Text };
   }
+
+  @media${device.tablet}{
+    
+  }
+
 `
 
 const Continents = styled.select`
@@ -52,6 +66,10 @@ const Continents = styled.select`
 
   &:hover{
     outline: none;
+  }
+
+  @media${device.tablet}{
+    align-self: start;
   }
 `
 

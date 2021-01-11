@@ -10,7 +10,7 @@ function Header() {
 
   return (
     <HeaderStyle>
-      <h1>Where in the world is Carmen?</h1>
+      <h1>Where in the world?</h1>
 
       <ThemeChanger>
         <Input id="Theme" onChange={ toggleTheme } />
