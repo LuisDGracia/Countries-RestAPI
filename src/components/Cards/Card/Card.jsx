@@ -4,9 +4,9 @@ import { Container, Flag, Name, FlagContainer, InfoContainer } from './CardStyle
 
 function Card({ flag, name, info, clicked }) {  
   return (
-    <Container loading="lazy" onClick={ clicked } >
+    <Container onClick={ clicked } >
       <FlagContainer>
-       <Flag src={flag} loading="lazy" />
+       <Flag src={flag} loading="lazy" alt={`${name} flag`} />
       </FlagContainer>
       <InfoContainer>
         <Name>{name}</Name>
