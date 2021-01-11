@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { Info, Data, Borders } from './RenderInfoStyled'
+import axios from '../../axios-orders'
 
 function RenderInfo({ info, array }) {
 
@@ -7,6 +8,17 @@ function RenderInfo({ info, array }) {
   let domains = [];
   let currencies = [];
   let borders = []
+
+  const onClickHandler = ( alpha ) => {
+    
+    let countryName = ""
+
+    axios.get(`/alpha/${alpha}`)
+      .then( country => {
+        countryName = country.data.name
+        window.location.pathname = `/${countryName}`
+      })
+  }
   
     
   for( let [key, value] of Object.entries(info) ){
@@ -33,7 +45,7 @@ function RenderInfo({ info, array }) {
             currencies.push(<Data key={index.name} >{`${index.name} `}</Data>)
             break;
           case 'Borders':
-              borders.push(<Borders key={index} ><Data key={index} >{index}</Data></Borders>);
+              borders.push(<Borders key={index} onClick={ () => onClickHandler(index) } ><Data key={index} >{index}</Data></Borders>);
             break;
           default:
           break;

@@ -22,6 +22,7 @@ const Borders = styled.span`
   text-align: center;
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.2);
   display: inline-block;
+  cursor: pointer;
 
   grid-colum: 1 / -1;
   grid-row: 5 / 6
