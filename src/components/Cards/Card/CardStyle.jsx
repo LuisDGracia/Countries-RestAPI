@@ -25,17 +25,6 @@ const Name = styled.p`
   font-weight: 600;
   color: ${ ({ theme }) => theme.colors.Text }
 `
-
-const Info = styled(Name)`
-  margin: 0;
-  font-size: 0.9em;
-  text-transform: capitalize;
-`
-
-const Data = styled.span`
-  font-weight: 400;
-`
-
 const InfoContainer = styled.div`
   height: 50%;
   padding-left: 20px;
@@ -46,4 +35,4 @@ const FlagContainer = styled.div`
   height: 50%;
 `
 
-export{ Container, Flag, Name, Info, Data, InfoContainer, FlagContainer }
+export{ Container, Flag, Name, InfoContainer, FlagContainer }

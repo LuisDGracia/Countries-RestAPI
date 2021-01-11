@@ -5,7 +5,7 @@ import { Container } from './CardsStyled'
 function Cards({ countries }) {
 
   const LoadCountryInfo = ( name ) => {
-    console.log( window.location.pathname = `/${name}` )
+    window.location.pathname = `/${name}`
   }
 
   return (
