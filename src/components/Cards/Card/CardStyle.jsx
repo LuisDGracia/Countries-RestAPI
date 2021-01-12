@@ -13,14 +13,6 @@ const Container = styled.div`
   &:hover{
     cursor: pointer;
   }
-
-  @media${device.tablet}{
-    width: 45%;
-  }
-  
-  @media${device.mobileL}{
-    width: 100%;
-  }
 `
 
 const Flag = styled.img`
