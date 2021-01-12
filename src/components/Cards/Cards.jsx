@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Card from './Card/Card'
 import { Container } from './CardsStyled'
@@ -22,6 +22,10 @@ function Cards({ countries }) {
     }, 2000)
     setCount((prevState) => ({ prev: prevState.prev + 10, next: prevState.next + 10 }))
   }
+
+  useEffect(() => {
+    setCurrent( countries.slice(count.prev, count.next) )
+  }, [countries, count])
 
   return (
     <Container>
