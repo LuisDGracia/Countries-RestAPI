@@ -24,16 +24,14 @@ function CountryInfo() {
 
   }, [params.country]);
 
-  const GoBackHandler = () => {
-      window.location.pathname = `/`
-  }
-
   return (
     <Container>
-      <BackBtn onClick={ GoBackHandler } >
-        <FontAwesomeIcon icon={ 'arrow-left' } />
-        <Link to="/" > Back </Link>
-      </BackBtn>
+        <Link to="/" style={{ textDecoration: 'none', width: '100px' }} >
+          <BackBtn>
+            <FontAwesomeIcon icon={ 'arrow-left' } />
+            Back 
+          </BackBtn>
+        </Link>
       { Object.entries(country).length === 0 ? (<p>Loading...</p>)
         :
         <InfoContainer>

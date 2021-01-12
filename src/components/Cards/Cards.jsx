@@ -1,27 +1,24 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Card from './Card/Card'
 import { Container } from './CardsStyled'
 
 function Cards({ countries }) {
-
-  const LoadCountryInfo = ( name ) => {
-    window.location.pathname = `/${name}`
-  }
-
   return (
     <Container>
       {countries.map( country => {
         return(
-          <Card 
-            flag={ country.flag } 
-            name={ country.name } 
-            info={{ 
-              'population': country.population, 
-              'region': country.region, 
-              'capital': country.capital 
-            }}
-            key={ country.name } 
-            clicked={ () => LoadCountryInfo( country.name )  } />
+          <Link to={`/${country.name}`}>
+            <Card 
+              flag={ country.flag } 
+              name={ country.name } 
+              info={{ 
+                'population': country.population, 
+                'region': country.region, 
+                'capital': country.capital 
+              }}
+              key={ country.name } />
+            </Link>
         )
       })}
     </Container>

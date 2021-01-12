@@ -43,7 +43,7 @@ const BorderText = styled.p`
 const Borders = styled.div``
 
 const BackBtn = styled.div`
-  width: 100px;
+  width: 100%;
   padding: 10px 0;
   background-color: ${ ({ theme }) => theme.colors.Elements };
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.3);

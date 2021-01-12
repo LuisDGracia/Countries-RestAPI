@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { device } from '../../../styles/mediaQueries';
 
 const Container = styled.div`
-  width: 21%;
+  width: 100%;
   height: 300px;
   max-height: 300px;
   margin-bottom: 40px;

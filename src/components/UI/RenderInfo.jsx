@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react'
 import { Info, Data, Borders } from './RenderInfoStyled'
 import axios from '../../axios-orders'
+import { useHistory } from 'react-router-dom';
 
 function RenderInfo({ info, array }) {
 
+  let history = useHistory();
   const CountryInfo = []
   let domains = [];
   let currencies = [];
@@ -16,7 +18,8 @@ function RenderInfo({ info, array }) {
     axios.get(`/alpha/${alpha}`)
       .then( country => {
         countryName = country.data.name
-        window.location.pathname = `/${countryName}`
+
+        history.push(`/${countryName}`)
       })
   }
   
@@ -45,7 +48,11 @@ function RenderInfo({ info, array }) {
             currencies.push(<Data key={index.name} >{`${index.name} `}</Data>)
             break;
           case 'Borders':
-              borders.push(<Borders key={index} onClick={ () => onClickHandler(index) } ><Data key={index} >{index}</Data></Borders>);
+              borders.push(
+                <Borders key={index} onClick={ () => onClickHandler(index) } >
+                  <Data key={index} >{index}</Data>
+                </Borders>
+              );
             break;
           default:
           break;

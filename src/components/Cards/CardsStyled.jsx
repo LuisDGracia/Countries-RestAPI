@@ -5,6 +5,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
+
+  a{
+    width: 21%;
+    text-decoration: none;
+  }
 `
 
 export {Container}
