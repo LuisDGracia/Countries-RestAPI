@@ -12,7 +12,7 @@ I has used
 
 I choose Infinite scroll over other options like react-window because is the one that fit the best to my approach to the solution and the other options needed a big refactor of the code
 
-## Undertanding
+## Understanding
 
 While developing this challenge I:
 
