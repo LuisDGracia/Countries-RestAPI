@@ -18,9 +18,9 @@ function Cards({ countries }) {
       return;
     }
     setTimeout(() => {
-      setCurrent(current.concat(countries.slice(count.prev + 10, count.next + 10)))
+      setCurrent(current.concat(countries.slice(count.prev + 16, count.next + 16)))
     }, 2000)
-    setCount((prevState) => ({ prev: prevState.prev + 10, next: prevState.next + 10 }))
+    setCount((prevState) => ({ prev: prevState.prev + 16, next: prevState.next + 16 }))
   }
 
   useEffect(() => {
