@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Card from './Card/Card'
 import { Container } from './CardsStyled'
@@ -6,24 +6,36 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 function Cards({ countries }) {
 
+	console.log( countries )
+	
 	const [count, setCount] = useState({
 		prev: 0,
 		next: 12,
 	})
+
 	const [hasMore, setHasMore] = useState(true)
-	const [current, setCurrent] = useState(countries.slice(count.prev, count.next))
 	
+	const [current, setCurrent] = useState(countries["data"].slice(count.prev, count.next))
+
 	const getMoreData = () => {
-		if( current.length === countries.length ){
+		console.log(current.length, countries["data"].length);
+		console.log(current.length === countries["data"].length);
+		if( current.length === countries["data"].length ){
 			setHasMore( false );
 			return;
 		}
 		setTimeout(() => {
-			console.log( current )
-			setCurrent(current.concat(countries.slice(count.prev + 12, count.next + 12)))
+			console.log( current.concat(countries["data"].slice(count.prev + 12, count.next + 12)) )
+			setCurrent(current.concat(countries["data"].slice(count.prev + 12, count.next + 12)))
 		}, 2000)
 		setCount( prevState => ({ prev: prevState.prev + 12, next: prevState.next + 12 }))
 	}
+
+	useEffect(() => {
+		setHasMore( true )
+		setCurrent(countries["data"].slice( 0, 12));
+		setCount(({ prev: 0, next: 12 }));
+	}, [countries] )
 
 	return (
 		<Container>

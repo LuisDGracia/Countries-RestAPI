@@ -8,33 +8,35 @@ import CountryInfo from '../County_Info/CountryInfo'
 
 function Layout() {
 
-  const [countries, setCountries] = useState([])
-  const [filter, setFilter] = useState([])
+	const [countries, setCountries] = useState([])
+	const [filter, setFilter] = useState({
+		continent: "all",
+		data: []
+	})
 
-  useEffect(() => {
-    axios.get('/all')
-      .then( info => {
-        setCountries( info.data );
-        setFilter( info.data );
-      })
-      .catch( error => error)
-  }, [])
+	useEffect(() => {
+		axios.get('/all')
+			.then( info => {
+				setCountries( info.data );
+				setFilter( prevData => ({ ...prevData, data: info.data}) );
+			}).catch( error => error)
+	}, [])
 
-  return (
-    <Fragment>
-      <Route path="/" exact >
-        <Header />
-        <Filters 
-          data={{ 'original': countries, 'filter': filter }} 
-          setData={{ 'countries': setCountries, 'filter': setFilter }} />
-        <Content countries={filter} />
-      </Route>
-      <Route path="/:country">
-        <Header />
-        <CountryInfo />
-      </Route>
-    </Fragment>
-  )
+	return (
+		<Fragment>
+			<Route path="/" exact >
+				<Header />
+				<Filters 
+					data={{ 'original': countries, 'filter': filter }} 
+					setData={{ 'countries': setCountries, 'filter': setFilter }} />
+				<Content countries={filter} />
+			</Route>
+			<Route path="/:country">
+				<Header />
+				<CountryInfo />
+			</Route>
+		</Fragment>
+	)
 }
 
 export default Layout

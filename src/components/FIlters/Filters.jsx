@@ -5,72 +5,68 @@ import { Container, Continent, Continents, ContinentsConteiner, Input, SearchCon
 
 function Filters({ data, setData }) {
 
-  const countries = data.original;
+	const countries = data.original;
 
-  const UpdateCountries = () => {
+	const UpdateCountries = () => {
 
-    let continent = document.getElementById('mySelect').value
+		let continent = document.getElementById('mySelect').value
 
-    if( continent !== 'all' ){
-      axios.get(`/region/${continent}`)
-      .then( countries => {
-        let newCountries = countries.data;
-        setData.filter( newCountries )
-      })
-      .catch( error => error );
-    }else{
-      axios.get(`/${continent}`)
-      .then( countries => {
-        let newCountries = countries.data;
-        setData.filter( newCountries )
-      })
-      .catch( error => error );
-    }
+		if( continent !== 'all' ){
+			axios.get(`/region/${continent}`)
+			.then( countries => {
+				let newCountries = countries.data;
+				setData.filter({ ...data.filter, continent: continent, data: newCountries })
+			})
+			.catch( error => console.log(error) );
+		}else{
+			axios.get(`/${continent}`)
+			.then( countries => {
+				let newCountries = countries.data;
+				setData.filter({ ...data.filter, continent: continent, data: newCountries })
+			})
+			.catch( error => ( console.log(error) ));
+		}
 
-  }
+	}
 
-  const SearchCountry = () => {
-    
-    let inputValue = document.getElementById('country').value.toLowerCase()
-    let filteredCountries = []
+	const SearchCountry = () => {
+		
+		let inputValue = document.getElementById('country').value.toLowerCase()
+		
+		if( inputValue !== ''){
+			axios.get(`name/${inputValue}?fullText=false`)
+			.then( countries => {
+				let newCountries = countries.data;
+				setData.filter({ ...data.filter, data: newCountries })
+			})
+			.catch( error => console.log(error) );
+		}else if( inputValue === '' ){
+			setData.filter({ ...data.filter, data: countries });
+		}
+	}
 
-    if( inputValue !== ''){
-      filteredCountries.push(
-        countries.filter( country => {
-          let countryLower = country.name.toLowerCase()
-          if( countryLower.includes(inputValue) ){
-            return country;
-          }else return false;
-        })
-      );
-      setData.filter( ...filteredCountries );
-    }else if( inputValue === '' ){
-      setData.filter( countries )
-    }
-  }
+	return (
+		<Container>
+			<SearchContainer>
+				<FontAwesomeIcon icon={ 'search' } />
+				<Input onChange={ () => SearchCountry() } id='country' />
+			</SearchContainer>
 
-  return (
-    <Container>
-      <SearchContainer>
-        <FontAwesomeIcon icon={ 'search' } />
-        <Input onChange={ () => SearchCountry() } id='country' />
-      </SearchContainer>
+			<ContinentsConteiner >
+				<Continents onChange={ () => UpdateCountries() } id="mySelect" >
+					<Continent disabled>Filter By Continent</Continent>
+					<Continent value='all' >All</Continent>
+					<Continent value='africa' >Africa</Continent>
+					<Continent value='americas' >Americas</Continent>
+					<Continent value='asia' >Asia</Continent>
+					<Continent value='europe' >Europe</Continent>
+					<Continent value='oceania' >Oceania</Continent>
+				</Continents>
+				<FontAwesomeIcon icon={ 'chevron-down' } />
+			</ContinentsConteiner>
 
-      <ContinentsConteiner >
-        <Continents onChange={ () => UpdateCountries() } id="mySelect" >
-          <Continent disabled >Filter By Continent</Continent>
-          <Continent value='all' >All</Continent>
-          <Continent value='africa' >Africa</Continent>
-          <Continent value='americas' >Americas</Continent>
-          <Continent value='asia' >Asia</Continent>
-          <Continent value='europe' >Europe</Continent>
-          <Continent value='oceania' >Oceania</Continent>
-        </Continents>
-        <FontAwesomeIcon icon={ 'chevron-down' } />
-      </ContinentsConteiner>
-
-    </Container>
-  )
+		</Container>
+	)
 }
 
 export default Filters
