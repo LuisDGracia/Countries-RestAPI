@@ -37,15 +37,6 @@ const Input = styled.input.attrs( () => ({ type: 'text', placeholder: 'Search fo
     outline:none;
     color: ${ ({ theme }) => theme.colors.Text };
   }
-
-  &::placeholder{
-    color: ${ ({ theme }) => theme.colors.Text };
-  }
-
-  @media${device.tablet}{
-    
-  }
-
 `
 
 const Continents = styled.select`

@@ -1,42 +1,39 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import axios from '../../axios-orders'
+import { useContext, useEffect } from 'react'
+
+// ROUTER
+import { Route, Switch } from 'react-router-dom'
+
+// COMPONENTS
 import Content from '../Content/Content'
 import Filters from '../FIlters/Filters'
 import Header from '../Header/Header'
-import { Route } from 'react-router-dom'
 import CountryInfo from '../County_Info/CountryInfo'
 
-function Layout() {
+// CONTEXT
+import { CountryContext } from '../../Context/CountryContext'
 
-	const [countries, setCountries] = useState([])
-	const [filter, setFilter] = useState({
-		continent: "all",
-		data: []
-	})
+
+function Layout() {
+	const { getCountries } = useContext(CountryContext);
 
 	useEffect(() => {
-		axios.get('/all')
-			.then( info => {
-				setCountries( info.data );
-				setFilter( prevData => ({ ...prevData, data: info.data}) );
-			}).catch( error => error)
-	}, [])
+		getCountries();
+		// eslint-disable-next-line
+	}, []);
 
 	return (
-		<Fragment>
-			<Route path="/" exact >
+		<Switch>
+			<Route path="/" exact>
 				<Header />
-				<Filters 
-					data={{ 'original': countries, 'filter': filter }} 
-					setData={{ 'countries': setCountries, 'filter': setFilter }} />
-				<Content countries={filter} />
+				<Filters />
+				<Content />
 			</Route>
 			<Route path="/:country">
 				<Header />
 				<CountryInfo />
 			</Route>
-		</Fragment>
-	)
+		</Switch>
+	);
 }
 
 export default Layout

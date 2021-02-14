@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { device } from '../../../styles/mediaQueries';
 
 const Container = styled.div`
   width: 100%;

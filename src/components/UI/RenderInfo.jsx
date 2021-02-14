@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react'
 import { Info, Data, Borders } from './RenderInfoStyled'
-import axios from '../../axios-orders'
+
+// ROUTER
 import { useHistory } from 'react-router-dom';
+import axios from '../../axios-orders'
 
 function RenderInfo({ info, array }) {
 
@@ -15,9 +17,9 @@ function RenderInfo({ info, array }) {
     
     let countryName = ""
 
-    axios.get(`/alpha/${alpha}`)
-      .then( country => {
-        countryName = country.data.name
+    axios.get(`/alpha/${alpha}?fields=name`)
+      .then( ({ data }) => {
+        countryName = data.name
 
         history.push(`/${countryName}`)
       })

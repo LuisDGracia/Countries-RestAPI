@@ -1,8 +1,12 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { HeaderStyle, ThemeChanger, Input, Toggler } from './HeaderStyled'
-import { AppContext } from '../../AppProvider';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import theme from '../../styles/theme'
+
+//FONT AWERSOME
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+//CONTEXT
+import { AppContext } from '../../AppProvider';
 
 function Header() {
 

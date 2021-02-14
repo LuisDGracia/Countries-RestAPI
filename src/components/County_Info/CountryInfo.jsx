@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import axios from '../../axios-orders'
-import RenderInfo from '../UI/RenderInfo'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState, useEffect } from 'react'
 import { Container, BackBtn, InfoContainer, FlagContainer, Flag, DataContainer, H2 } from './CountryInfoStyled'
 
+//ROUTER
+import { Link, useParams } from 'react-router-dom'
+import axios from '../../axios-orders'
+
+// COMPONENTS
+import RenderInfo from '../UI/RenderInfo'
+
+// FONT AWESOME
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function CountryInfo() {
 
@@ -12,7 +17,7 @@ function CountryInfo() {
   const [country, setCountry] = useState({})
 
   useEffect(() => {
-    axios.get(`/name/${params.country}?fullText=true`)
+    axios.get(`/name/${params.country}?fields=flag;name;nativeName;population;region;subregion;capital;topLevelDomain;currencies;borders`)
     .then( info => {
       setCountry( ...info.data );
     })
