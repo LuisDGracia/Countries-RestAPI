@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { memo, useContext } from 'react'
 import { Container, Continent, Continents, ContinentsConteiner, Input, SearchContainer } from './FiltersStyled'
 
 // FONT AWESOME
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // CONTEXT
 import { CountryContext } from '../../Context/CountryContext';
 
-function Filters() {
+export default memo(function Filters() {
 
 	const { getCountry, getCountriesByContinent } = useContext(CountryContext);
 
@@ -33,6 +33,4 @@ function Filters() {
 
 		</Container>
 	)
-}
-
-export default Filters
+})

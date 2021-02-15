@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, memo } from 'react'
 import { HeaderStyle, ThemeChanger, Input, Toggler } from './HeaderStyled'
 import theme from '../../styles/theme'
 
@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //CONTEXT
 import { AppContext } from '../../AppProvider';
 
-function Header() {
+export default memo(function Header() {
 
   const { toggleTheme, themeMode } = useContext(AppContext);
 
@@ -25,6 +25,4 @@ function Header() {
       </ThemeChanger> 
     </HeaderStyle>
   )
-}
-
-export default Header
+})

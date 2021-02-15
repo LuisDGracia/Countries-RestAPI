@@ -8,9 +8,6 @@ import RenderInfo from '../../UI/RenderInfo'
 import { Link } from 'react-router-dom'
 
 export default memo(function Card({ flag, name, info}) {  
-
-	console.log( name )
-
 	return (
     <Link to={`/${name}`}>
       <Container>
