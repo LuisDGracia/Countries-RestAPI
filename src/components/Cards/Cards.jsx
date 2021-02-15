@@ -5,14 +5,11 @@ import { Container } from './CardsStyled'
 import Card from './Card/Card'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
-// ROUTER
-import { Link } from 'react-router-dom'
-
 function Cards({ countries }) {
 
 	const [count, setCount] = useState({
 		prev: 0,
-		next: 12,
+		next: 16,
 	})
 
 	const [hasMore, setHasMore] = useState(true)
@@ -25,15 +22,15 @@ function Cards({ countries }) {
 			return;
 		}
 		setTimeout(() => {
-			setCurrent(current.concat(countries.slice(count.prev + 12, count.next + 12)))
+			setCurrent(current.concat(countries.slice(count.prev + 16, count.next + 16)))
 		}, 2000)
-		setCount( prevState => ({ prev: prevState.prev + 12, next: prevState.next + 12 }))
+		setCount( prevState => ({ prev: prevState.prev + 16, next: prevState.next + 16 }))
 	}
 
 	useEffect(() => {
 		setHasMore( true )
-		setCurrent(countries.slice( 0, 12));
-		setCount(({ prev: 0, next: 12 }));
+		setCurrent(countries.slice( 0, 16));
+		setCount(({ prev: 0, next: 16 }));
 	}, [countries] )
 
 	return (
@@ -43,21 +40,20 @@ function Cards({ countries }) {
 			next={getMoreData}
 			hasMore={hasMore}
 			loader={<h2 style={{width: '100%', textAlign: 'center' }}>Loading...</h2>}
-			style={{ display: 'flex', justifyContent:'space-between', flexFlow: 'row wrap' }} >
-				{current.map( country => {
-					return(
-						<Link to={`/${country.name}`} key={country.name}>
-							<Card 
-								flag={ country.flag } 
-								name={ country.name } 
-								info={{ 
-									'population': country.population, 
-									'region': country.region, 
-									'capital': country.capital 
-								}}
-								key={ country.name } />
-						</Link>
-					)
+			style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap' }} >
+				{current && current.map( (country, i) => {
+					return (
+						<Card
+							key={i}
+							flag={country.flag}
+							name={country.name}
+							info={{
+								population: country.population,
+								region: country.region,
+								capital: country.capital,
+							}}
+						/>
+					);
 				})}
 			</InfiniteScroll>
 		</Container>

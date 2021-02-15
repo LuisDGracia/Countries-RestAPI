@@ -11,7 +11,6 @@ export default function CountryState({ children }) {
 	const [countries, dispatch] = useReducer(CountryReducer, initialState);
 
 	const getCountries = () => {
-		console.log( "countries" )
 		axios
 			.get("/all?fields=name;population;region;capital;flag")
 			.then(({ data }) => {

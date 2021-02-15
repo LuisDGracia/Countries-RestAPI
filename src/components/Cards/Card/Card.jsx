@@ -1,20 +1,25 @@
-import { Container, Flag, Name, FlagContainer, InfoContainer } from './CardStyle'
+import { memo } from 'react';
+import { Container, Name, FlagContainer, InfoContainer } from './CardStyle'
 
 //COMPONENTS
 import RenderInfo from '../../UI/RenderInfo'
 
-function Card({ flag, name, info, clicked }) {  
-	return (
-		<Container onClick={ clicked } >
-			<FlagContainer>
-				<Flag src={flag} loading="lazy" alt={`${name} flag`} />
-			</FlagContainer>
-			<InfoContainer>
-				<Name>{name}</Name>
-				<RenderInfo info={info} />
-			</InfoContainer>
-		</Container>
-	)
-}
+// ROUTER
+import { Link } from 'react-router-dom'
 
-export default Card
+export default memo(function Card({ flag, name, info}) {  
+
+	console.log( name )
+
+	return (
+    <Link to={`/${name}`}>
+      <Container>
+        <FlagContainer flagUrl={flag} alt={`${name} flag`}></FlagContainer>
+        <InfoContainer>
+          <Name>{name}</Name>
+          <RenderInfo info={info} />
+        </InfoContainer>
+      </Container>
+    </Link>
+  );
+})
