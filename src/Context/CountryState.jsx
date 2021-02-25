@@ -14,24 +14,18 @@ export default function CountryState({ children }) {
 		axios
 			.get("/all?fields=name;population;region;capital;flag")
 			.then(({ data }) => {
-				dispatch({ type: "get all", payload: data })
+				dispatch({ type: "get all", data: data })
 			})
 			.catch((error) => error);
 	}
 
 	const getCountry = ( event ) => {
-		console.log( "updated" )
 		let country = event.target.value;
 
 		if (country !== "") {
-			axios
-				.get(`name/${country}?fullText=false`)
-				.then(({ data }) => {
-					dispatch({ type: 'get input', payload: data });
-				})
-				.catch((error) => console.log(error));
+			dispatch({ type: "get input", data: countries, search: country });
 		} else if (country === "") {
-			dispatch({ type: 'get input', payload: countries.original });
+			dispatch({ type: "get all", data: countries.original });
 		}
 
 	}
@@ -40,17 +34,9 @@ export default function CountryState({ children }) {
 		let continent = event.target.value;
 
 		if( continent !== 'all' ){
-			axios.get(`/region/${continent}?fields=name;population;region;capital;flag`)
-			.then( ({ data }) => {
-				dispatch({ type:'get continent', payload: data })
-			})
-			.catch( error => console.log(error) );
+			dispatch({ type: "get continent", data: countries, search: continent });
 		}else{
-			axios.get(`/${continent}?fields=name;population;region;capital;flag`)
-			.then( ({ data }) => {
-				dispatch({ type:'get continent', payload: data, continent: continent })
-			})
-			.catch( error => ( console.log(error) ));
+			dispatch({ type: "get all", data: countries.original });
 		}
 	}
 

@@ -1,7 +1,7 @@
-import { useContext, useEffect } from 'react'
+import { Fragment, useContext, useEffect } from 'react'
 
 // ROUTER
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
 // COMPONENTS
 import Content from '../Content/Content'
@@ -22,17 +22,21 @@ function Layout() {
 	}, []);
 
 	return (
-		<Switch>
-			<Route path="/" exact>
-				<Header />
-				<Filters />
-				<Content />
-			</Route>
-			<Route path="/:country">
-				<Header />
-				<CountryInfo />
-			</Route>
-		</Switch>
+		<Fragment>
+			<Header />
+
+			<Switch>
+				<Route path="/" exact>
+					<Filters />
+					<Content />
+				</Route>
+
+				<Route path="/:country" component={ CountryInfo } />
+
+				<Redirect to="/" />
+			</Switch>
+
+		</Fragment>
 	);
 }
 

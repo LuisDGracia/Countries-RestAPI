@@ -22,11 +22,11 @@ export default memo(function Filters() {
 				<Continents onChange={ ( event ) => getCountriesByContinent( event ) } id="mySelect" >
 					<Continent disabled>Filter By Continent</Continent>
 					<Continent value='all' >All</Continent>
-					<Continent value='africa' >Africa</Continent>
-					<Continent value='americas' >Americas</Continent>
-					<Continent value='asia' >Asia</Continent>
-					<Continent value='europe' >Europe</Continent>
-					<Continent value='oceania' >Oceania</Continent>
+					<Continent value='Africa' >Africa</Continent>
+					<Continent value='Americas' >Americas</Continent>
+					<Continent value='Asia' >Asia</Continent>
+					<Continent value='Europe' >Europe</Continent>
+					<Continent value='Oceania' >Oceania</Continent>
 				</Continents>
 				<FontAwesomeIcon icon={ 'chevron-down' } />
 			</ContinentsConteiner>
