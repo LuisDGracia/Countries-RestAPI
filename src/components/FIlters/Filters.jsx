@@ -9,17 +9,17 @@ import { CountryContext } from '../../Context/CountryContext';
 
 export default memo(function Filters() {
 
-	const { getCountry, getCountriesByContinent } = useContext(CountryContext);
+	const { getCountry } = useContext(CountryContext);
 
 	return (
 		<Container>
 			<SearchContainer>
 				<FontAwesomeIcon icon={ 'search' } />
-				<Input onChange={ ( event ) => getCountry( event ) } id='country' />
+				<Input onChange={ ( ) => getCountry( ) } id='country' />
 			</SearchContainer>
 
 			<ContinentsConteiner >
-				<Continents onChange={ ( event ) => getCountriesByContinent( event ) } id="mySelect" >
+				<Continents onChange={ ( ) => getCountry( ) } id="continent" >
 					<Continent disabled>Filter By Continent</Continent>
 					<Continent value='all' >All</Continent>
 					<Continent value='Africa' >Africa</Continent>

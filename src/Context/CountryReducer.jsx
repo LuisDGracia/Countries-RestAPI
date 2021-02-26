@@ -1,19 +1,8 @@
 
 export default function CountryReducer(state, payload) {
 	
-	let originalLength = 0;
-	let filteredLength = 0;
+	let originalSet = payload.data.original;
 
-	let originalSet = [];
-	let filteredSet = [];
-
-	if( payload.data.original ){
-		originalLength = payload.data.original.length;
-		filteredLength = payload.data.filtered.length;
-	
-		originalSet = payload.data.original;
-		filteredSet = payload.data.filtered;
-	}
 
 	let countries = [];
 
@@ -22,25 +11,34 @@ export default function CountryReducer(state, payload) {
 			return { ...state, original: payload.data, filtered: payload.data };
 
 		case "get input":
-			if( originalLength >= filteredLength ){
-				console.log( filteredSet )
-				countries = filteredSet.filter( country => country.name.includes( payload.search, 0 ) )
-			}else if ( originalLength === filteredLength ){
-				countries = originalSet.filter( country => country.name.includes( payload.search, 0 ) )
+
+			// If everythin has changed, search for both filters
+			if( payload.country !== '' && payload.continent !== 'all' ){
+				countries = originalSet.filter(
+					(country) =>
+						country.name.toLowerCase().includes( payload.country.toLowerCase() ) &&
+						country.region.toLowerCase().includes( payload.continent.toLowerCase() )
+				);
+
+				// If continent has not been set, search by name
+			}else if ( payload.continent === 'all' && payload.country !== '' ){
+				countries = originalSet.filter((country) =>
+					country.name.toLowerCase().includes(payload.country.toLowerCase())
+				);
+
+				// If the input is empty and the continent has changed
+				// search by continent
+			}else if( payload.continent !== 'all' && payload.country === '' ){
+				countries = originalSet.filter((country) =>
+					country.region.toLowerCase().includes(payload.continent.toLowerCase())
+				);
+
+				// If nothing has changed, return every country
+			}else{
+				countries = originalSet
 			}
 
-			return { ...state, filtered: countries, continent: 'all' };
-
-		case "get continent":
-
-			if( originalLength >= filteredLength ){
-				console.log( filteredSet )
-				countries = filteredSet.filter( country => country.region.includes( payload.search, 0 ) )
-			}else if ( originalLength <= filteredLength ){
-				countries = originalSet.filter( country => country.region.includes( payload.search, 0 ) )
-			}
-
-			return { ...state, filtered: countries, continent: payload.continent };
+		return { ...state, filtered: countries, continent: payload.continent };
 
 		default:
 			break;

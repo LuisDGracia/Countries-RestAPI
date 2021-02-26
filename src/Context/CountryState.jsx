@@ -19,25 +19,12 @@ export default function CountryState({ children }) {
 			.catch((error) => error);
 	}
 
-	const getCountry = ( event ) => {
-		let country = event.target.value;
+	const getCountry = ( ) => {
+		let country = document.getElementById('country').value
+		let continent = document.getElementById('continent').value
 
-		if (country !== "") {
-			dispatch({ type: "get input", data: countries, search: country });
-		} else if (country === "") {
-			dispatch({ type: "get all", data: countries.original });
-		}
+		dispatch({ type: "get input", data: countries, country: country, continent: continent });
 
-	}
-
-	const getCountriesByContinent = ( event ) => {
-		let continent = event.target.value;
-
-		if( continent !== 'all' ){
-			dispatch({ type: "get continent", data: countries, search: continent });
-		}else{
-			dispatch({ type: "get all", data: countries.original });
-		}
 	}
 
 	return (
@@ -45,8 +32,7 @@ export default function CountryState({ children }) {
 			countries: countries.filtered,
 			continent: countries.continent,
 			getCountry,
-			getCountries,
-			getCountriesByContinent }} >
+			getCountries}} >
 			{children}
 		</CountryContext.Provider>
 	)
