@@ -6,7 +6,7 @@ const theme = {
       Background: "hsl(0, 0%, 98%)",
       Input: "hsl(0, 0%, 52%)",
     },
-    mode: " Mode Dark",
+    mode: "Dark Mode",
     icon: "moon",
     transition: "0.5s",
   },

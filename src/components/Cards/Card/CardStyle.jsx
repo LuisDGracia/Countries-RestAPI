@@ -3,8 +3,11 @@ import styled from 'styled-components'
 const Container = styled.div`
   width: 100%;
   height: 300px;
+
   max-height: 300px;
   margin-bottom: 40px;
+  padding-bottom: 20px;
+  
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.3);
   border-radius: 5px;
   background-color: ${ ({ theme }) => theme.colors.Elements };

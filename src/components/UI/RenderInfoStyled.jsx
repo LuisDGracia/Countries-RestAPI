@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const Info = styled.p`
   margin: 0;
+  margin-top: 10px;
   color: ${ ({ theme }) => theme.colors.Text };
   font-size: 16px;
   font-weight: 600;

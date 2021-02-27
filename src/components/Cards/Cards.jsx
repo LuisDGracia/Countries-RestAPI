@@ -40,7 +40,7 @@ function Cards({ countries }) {
 			next={getMoreData}
 			hasMore={hasMore}
 			loader={<h2 style={{width: '100%', textAlign: 'center' }}>Loading...</h2>}
-			style={{ display: 'flex', justifyContent:'space-between', flexWrap: 'wrap' }} >
+			style={{ display: 'flex', flexWrap: 'wrap', gap: '65px' }} >
 				{current && current.map( (country, i) => {
 					return (
 						<Card
