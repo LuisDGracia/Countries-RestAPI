@@ -1,43 +1,40 @@
-import { Fragment, useContext, useEffect } from 'react'
+import{ Component, Fragment } from "react";
 
 // ROUTER
-import { Redirect, Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from "react-router-dom";
 
 // COMPONENTS
-import Content from '../Content/Content'
-import Filters from '../FIlters/Filters'
-import Header from '../Header/Header'
-import CountryInfo from '../County_Info/CountryInfo'
+import Content from "../Content/Content";
+import Filters from "../FIlters/Filters";
+import Header from "../Header/Header";
+import CountryInfo from "../County_Info/CountryInfo";
 
 // CONTEXT
-import { CountryContext } from '../../Context/CountryContext'
+import { CountryContext } from "../../Context/CountryContext";
 
+export default class Layout extends Component {
+  static contextType = CountryContext;
 
-function Layout() {
-	const { getCountries } = useContext(CountryContext);
+  componentDidMount() {
+    this.context.getCountries();
+  }
 
-	useEffect(() => {
-		getCountries();
-		// eslint-disable-next-line
-	}, []);
+  render() {
+    return (
+      <Fragment>
+        <Header />
 
-	return (
-		<Fragment>
-			<Header />
+        <Switch>
+          <Route path="/" exact>
+            <Filters />
+            <Content />
+          </Route>
 
-			<Switch>
-				<Route path="/" exact>
-					<Filters />
-					<Content />
-				</Route>
+          <Route path="/:country" component={CountryInfo} />
 
-				<Route path="/:country" component={ CountryInfo } />
-
-				<Redirect to="/" />
-			</Switch>
-
-		</Fragment>
-	);
+          <Redirect to="/" />
+        </Switch>
+      </Fragment>
+    );
+  }
 }
-
-export default Layout
