@@ -13,11 +13,7 @@ function Content() {
 
 	return (
 		<Container>
-			{countries.length === 0 ? (
-				<p>Loading...</p>
-			) : (
-				<Cards countries={countries} />
-			)}
+			{ countries.length === 0 ? <p>Loading...</p> :	<Cards countries={countries} /> }
 		</Container>
 	);
 }
