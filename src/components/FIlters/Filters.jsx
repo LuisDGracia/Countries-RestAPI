@@ -20,7 +20,6 @@ export default memo(function Filters() {
 
 			<ContinentsConteiner >
 				<Continents onChange={ ( ) => getCountry( ) } id="continent" >
-					<Continent disabled>Filter By Continent</Continent>
 					<Continent value='all' >All</Continent>
 					<Continent value='Africa' >Africa</Continent>
 					<Continent value='Americas' >Americas</Continent>

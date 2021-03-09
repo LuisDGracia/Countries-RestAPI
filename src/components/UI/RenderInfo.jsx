@@ -1,73 +1,28 @@
 import React, { Fragment } from 'react'
-import { Info, Data, Borders } from './RenderInfoStyled'
+import { Info } from './RenderInfoStyled'
 
 // ROUTER
 import { useHistory } from 'react-router-dom';
-import axios from '../../axios-orders'
+import { numberFormat, iterateSubArrays } from './ArrayLogic';
 
-function RenderInfo({ info, array }) {
+export default function RenderInfo({ info, array }) {
 
   let history = useHistory();
-  const CountryInfo = []
+  let countryInfo = [];
   let domains = [];
   let currencies = [];
-  let borders = []
+  let borders = [];
 
-  const onClickHandler = ( alpha ) => {
-    
-    let countryName = ""
-
-    axios.get(`/alpha/${alpha}?fields=name`)
-      .then( ({ data }) => {
-        countryName = data.name
-
-        history.push(`/${countryName}`)
-      })
-  }
-  
-    
-  for( let [key, value] of Object.entries(info) ){
-
-    let number = value
-
-    if( typeof number === 'number' ){
-      number = value.toLocaleString();
-      number = number.replaceAll('.',',')
-    }
-    CountryInfo.push(<Info key={key} >{key}: <Data key={number}>{ number }</Data></Info>)
-  }
-
+  numberFormat( info, countryInfo )
 
   // If array prop is present, do this code
   if( array ){
-    for( let [key, value] of Object.entries(array)){
-      value.map( index => {
-        switch( key ){
-          case 'Top Level Domain':
-              domains.push(<Data key={index} style={{ textTransform: 'none' }} >{index}</Data>)
-            break;
-          case 'Currencies':
-            currencies.push(<Data key={index.name} >{`${index.name} `}</Data>)
-            break;
-          case 'Borders':
-              borders.push(
-                <Borders key={index} onClick={ () => onClickHandler(index) } >
-                  <Data key={index} >{index}</Data>
-                </Borders>
-              );
-            break;
-          default:
-          break;
-        }
-        return false;
-      })
-    }
+    iterateSubArrays( array, domains, currencies, borders, history );
   }
 
-  
   return (
     <Fragment>
-      {CountryInfo}
+      {countryInfo}
       {
         array === undefined ? <></> :
         <Fragment>
@@ -79,5 +34,3 @@ function RenderInfo({ info, array }) {
     </Fragment>
   )
 }
-
-export default RenderInfo
