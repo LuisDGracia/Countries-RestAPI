@@ -11,7 +11,7 @@ import RenderInfo from '../UI/RenderInfo'
 // FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function CountryInfo() {
+export default function CountryInfo() {
 
   const params = useParams()
   const [country, setCountry] = useState({})
@@ -39,28 +39,32 @@ function CountryInfo() {
         </Link>
       { Object.entries(country).length === 0 ? (<p>Loading...</p>)
         :
-        <InfoContainer>
-          <FlagContainer>
-            <Flag src={country.flag} />
-          </FlagContainer>
-          <DataContainer>
-            <H2>{country.name}</H2>
-            <RenderInfo 
-              info={{
-                "Native Name": country.nativeName,
-                "Population": country.population,
-                "Region": country.region,
-                "Sub Region": country.subregion,
-                "Capital": country.capital,}} 
-              array={{
-                "Top Level Domain": country.topLevelDomain,
-                "Currencies": country.currencies,
-                "Borders": country.borders }}  />
-          </DataContainer>
-        </InfoContainer>
+        <InfoComponent country={ country } />
       }
     </Container>
   )
 }
 
-export default CountryInfo
+const InfoComponent = ({ country }) => {
+  return (
+    <InfoContainer>
+      <FlagContainer>
+        <Flag src={country.flag} />
+      </FlagContainer>
+      <DataContainer>
+        <H2>{country.name}</H2>
+        <RenderInfo 
+          info={{
+            "Native Name": country.nativeName,
+            "Population": country.population,
+            "Region": country.region,
+            "Sub Region": country.subregion,
+            "Capital": country.capital,}} 
+          array={{
+            "Top Level Domain": country.topLevelDomain,
+            "Currencies": country.currencies,
+            "Borders": country.borders }}  />
+      </DataContainer>
+    </InfoContainer>
+  )
+}
