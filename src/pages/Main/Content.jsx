@@ -2,7 +2,8 @@ import { useContext } from 'react'
 import { Container } from './ContentStyled';
 
 //COMPONENTS
-import Cards from '../Cards/Cards';
+import Cards from '../../components/Cards/Cards';
+import Loading from '../../components/UI/Loading/Loading';
 
 // CONTEXT
 import { CountryContext } from '../../Context/CountryContext';
@@ -13,7 +14,7 @@ function Content() {
 
 	return (
 		<Container>
-			{ countries.length === 0 ? <p>Loading...</p> :	<Cards countries={countries} /> }
+			{ countries.length === 0 ? <Loading /> :	<Cards countries={countries} /> }
 		</Container>
 	);
 }

@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import axios from '../../axios-orders'
 
 // COMPONENTS
-import RenderInfo from '../UI/RenderInfo'
+import RenderInfo from '../../components/UI/RenderInfo/RenderInfo'
 
 // FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,7 +17,11 @@ export default function CountryInfo() {
   const [country, setCountry] = useState({})
 
   useEffect(() => {
-    axios.get(`/name/${params.country}?fields=flag;name;nativeName;population;region;subregion;capital;topLevelDomain;currencies;borders`)
+
+    let filters =
+      "fields=flag;name;nativeName;population;region;subregion;capital;topLevelDomain;currencies;borders";
+
+    axios.get(`/name/${params.country}?${filters}`)
     .then( info => {
       setCountry( ...info.data );
     })
