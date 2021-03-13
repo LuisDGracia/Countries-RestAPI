@@ -38,7 +38,7 @@ const FlagContainer = styled.div`
   height: 50%;
 
   background-image: url(${ ({ flagUrl }) => flagUrl });
-  background-size: cover;
+  background-size: 100% 100%;
 `
 
 export{ Container, Flag, Name, InfoContainer, FlagContainer }

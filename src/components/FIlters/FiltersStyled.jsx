@@ -2,7 +2,8 @@ import styled from 'styled-components'
 import { device } from '../../styles/mediaQueries'
 
 const Container = styled.div`
-  padding: 40px;
+  min-height: 150px;
+  padding: 0 40px;
   background-color: ${ ({ theme }) => theme.colors.Background };
   display: flex;
   justify-content: space-between;
@@ -33,9 +34,10 @@ const Input = styled.input.attrs( () => ({ type: 'text', placeholder: 'Search fo
   margin: 5px 0px;
   padding: 0 20px;
 
+  color: ${ ({ theme }) => theme.colors.Text };
+
   &:focus{
     outline:none;
-    color: ${ ({ theme }) => theme.colors.Text };
   }
 `
 

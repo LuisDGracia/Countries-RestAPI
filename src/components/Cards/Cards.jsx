@@ -1,16 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { Container } from './CardsStyled'
 
 // COMPONENTS
 import Card from './Card/Card'
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { ThemeContext } from 'styled-components'
 
 export default function Cards({ countries }) {
+
+	const theme = useContext( ThemeContext )
 
 	const [count, setCount] = useState({
 		prev: 0,
 		next: 16,
 	})
+
+	const loaderScrollStyle = {
+    width: "100%",
+    textAlign: "center",
+    color: theme.colors.Text,
+  };
 
 	const [hasMore, setHasMore] = useState(true)
 	
@@ -39,7 +48,7 @@ export default function Cards({ countries }) {
 			dataLength={current.length}
 			next={getMoreData}
 			hasMore={hasMore}
-			loader={<h2 style={{width: '100%', textAlign: 'center' }}>Loading...</h2>}
+			loader={<h2 style={ loaderScrollStyle }>Loading...</h2>}
 			style={{ display: 'flex', flexWrap: 'wrap', gap: '60px' }} >
 
 				{ <RenderCards current={current} /> }
