@@ -1,7 +1,7 @@
 import { Info, Data, Borders } from "./RenderInfoStyled";
 
 // ROUTER
-import axios from "../../axios-orders";
+import axios from "../../../axios-orders";
 
 export function iterateSubArrays(array, domains, currencies, borders, history) {
   let onBorderClickHandler = (alpha) => {

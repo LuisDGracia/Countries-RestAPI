@@ -4,10 +4,12 @@ import{ Component, Fragment } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 // COMPONENTS
-import Content from "../Content/Content";
 import Filters from "../FIlters/Filters";
 import Header from "../Header/Header";
-import CountryInfo from "../County_Info/CountryInfo";
+
+// PAGES
+import Content from "../../pages/Main/Content";
+import CountryInfo from "../../pages/County_Info/CountryInfo";
 
 // CONTEXT
 import { CountryContext } from "../../Context/CountryContext";
