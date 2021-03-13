@@ -3,6 +3,7 @@ import { device } from '../../styles/mediaQueries'
 
 const Container = styled.div`
   width: 100%;
+  height: 100%;
 
   a{
     width: 21%;
