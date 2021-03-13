@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
-export default function Loading({ size }) {
+export default function Loading( ) {
   const theme = useContext(ThemeContext);
 
   const Loadingstyle = {
@@ -15,7 +15,7 @@ export default function Loading({ size }) {
 
   return (
     <div style={Loadingstyle} >
-      <FontAwesomeIcon icon="hourglass-start" size={ size } spin />
+      <FontAwesomeIcon icon="hourglass-start" size="5x" spin />
     </div>
   );
 }
