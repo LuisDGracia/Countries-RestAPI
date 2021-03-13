@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Container, Name, FlagContainer, InfoContainer } from './CardStyle'
 
 //COMPONENTS
-import RenderInfo from '../../UI/RenderInfo'
+import RenderInfo from '../../UI/RenderInfo/RenderInfo'
 
 // ROUTER
 import { Link } from 'react-router-dom'
